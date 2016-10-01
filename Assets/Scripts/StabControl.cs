@@ -13,7 +13,7 @@ public class StabControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetButtonDown ("Stab")) {
+		if (Input.GetMouseButtonDown(0)) {
 			anim.SetTrigger ("isStabbing");
 		}
 	}
