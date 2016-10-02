@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 	public GameObject enemySpear;
 	public float startWait;
 
+	public GUIText instructionText;
 	public GUIText restartText;
 	public GUIText gameOverText;
 
@@ -31,7 +32,7 @@ public class GameController : MonoBehaviour {
 		// enemySpear.transform.localRotation = Quaternion.Euler (56.975f, 31.244f, 85.32301f);
 
 		if (restart) {
-			restart();
+			restartLevel();
 		}
 	}
 
@@ -41,7 +42,7 @@ public class GameController : MonoBehaviour {
 		// start moving horses
 	}
 
-	IEnumerator restart () {
+	IEnumerator restartLevel () {
 		float fadeTime = GameObject.Find("_GM").GetComponent<Fading>().BeginFade(1);
 		yield return new WaitForSeconds(fadeTime);
 		if (Input.GetKeyDown (KeyCode.R))
@@ -60,7 +61,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void GameOver () {
-		gameOverText.text = "The crowd is disappointed...";
+		gameOverText.text = "Game Over! The crowd is disappointed...";
 		gameOver = true;
 		restart = true;
 		restartText.text = "Press 'R' for Restart";
