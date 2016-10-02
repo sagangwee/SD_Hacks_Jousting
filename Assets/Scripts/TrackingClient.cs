@@ -11,7 +11,7 @@ public class TrackingClient : MonoBehaviour {
 	public float acceleration_y; // forward direction of phone
 	public float acceleration_z; // up direction of phone
 
-	private String ws_uri = "ws://104.154.242.241:65080/serve";
+	private String ws_uri = "ws://104.154.249.141:65080/serve";
 	char[] delimiters = {','};
 
 	// Coroutine for streaming phone orientation + acceleration data.
