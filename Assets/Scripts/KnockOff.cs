@@ -3,7 +3,7 @@ using System.Collections;
 
 public class KnockOff : MonoBehaviour {
 
-	/*
+	
 	private GameController gameController;
 
 	// Use this for initialization
@@ -24,6 +24,7 @@ public class KnockOff : MonoBehaviour {
 		float force = 10;
 
 		if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy") {
+			other.transform.parent = null;
 			// Calculate Angle Between the collision point and the player
 			Vector3 dir = other.contacts[0].point - transform.position;
 			// We then get the opposite (-Vector3) and normalize it
@@ -33,5 +34,5 @@ public class KnockOff : MonoBehaviour {
 			GetComponent<Rigidbody>().AddForce(dir*force);
 		}
 	}
-	*/
+	
 }
