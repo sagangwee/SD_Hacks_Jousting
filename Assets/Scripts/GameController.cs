@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour {
 
 	void Update () {
 		moveSpearRelativeToHand();
-		enemySpear.transform.localRotation = Quaternion.Euler (49.711f, -1.971f, 33.494f);
+		enemySpear.transform.localRotation = Quaternion.Euler (56.975f, 31.244f, 85.32301f);
 	}
 
 	void moveSpearRelativeToHand () {
