@@ -11,15 +11,18 @@ public class TrackingClient : MonoBehaviour {
 	public float acceleration_y; // forward direction of phone
 	public float acceleration_z; // up direction of phone
 
-	private String ws_uri = "ws://162.222.176.198:65080/serve";
+	public String websocket_ip = "162.222.176.198";
+	private String ws_uri;
 	char[] delimiters = {','};
 	private DateTime start_time;
 	private int msg_count = 0;
 	public double avg_freq; // average # of msgs per second
 	private DateTime epochStart = new DateTime(1970, 1, 1);
+	public bool show_timing = false;
 
 	// Coroutine for streaming phone orientation + acceleration data.
 	IEnumerator Start() {
+		ws_uri = "ws://" + websocket_ip + ":65080/serve";
 		Debug.LogWarning ("[+] Tracking client is active.");
 		WebSocket ws = new WebSocket(new Uri(ws_uri));
 		start_time = DateTime.Now;
@@ -41,9 +44,11 @@ public class TrackingClient : MonoBehaviour {
 					acceleration_z = float.Parse(components[2]);
 				}
 
-				double now = (DateTime.UtcNow.Subtract(epochStart)).TotalMilliseconds;
-				Debug.LogWarning("Time (ms) since phone movement: " + (now - double.Parse(components[3])).ToString());
-				Debug.LogWarning("Time (ms) since server transmission: " + (now - double.Parse(components[4])).ToString());
+				if (show_timing) {
+					double now = (DateTime.UtcNow.Subtract(epochStart)).TotalMilliseconds;
+					Debug.LogWarning("Time (ms) since phone movement: " + (now - double.Parse(components[3])).ToString());
+					Debug.LogWarning("Time (ms) since server transmission: " + (now - double.Parse(components[4])).ToString());
+				}
 			}
 			if (ws.error != null) {
 				Debug.LogError("Error: " + ws.error);
